@@ -21,22 +21,22 @@ public class RedPlayer : MonoBehaviour
     {
         isMove = false;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             isMove = true;
             rb.MovePosition(transform.position + transform.forward * moveSpeed * Time.fixedDeltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             isMove = true;
             rb.MovePosition(transform.position + transform.right * moveSpeed * Time.fixedDeltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             isMove = true;
             rb.MovePosition(transform.position + -transform.right * moveSpeed * Time.fixedDeltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             isMove = true;
             rb.MovePosition(transform.position + -transform.forward * moveSpeed * Time.fixedDeltaTime);

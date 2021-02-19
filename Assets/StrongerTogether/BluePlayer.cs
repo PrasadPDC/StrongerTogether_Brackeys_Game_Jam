@@ -5,48 +5,37 @@ using UnityEngine;
 public class BluePlayer : MonoBehaviour
 {
     [SerializeField]private float moveSpeed = 100f;
-    private Rigidbody rb;
-    private bool isMove = false;
-    public GameObject blueslime;
+    public CharacterController controller;
     private UI_System UI;
+    [SerializeField]private float turnSmoothtime = 0.1f;
+    float turnVelocity;
+    public Transform Camera;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        UI = FindObjectOfType<UI_System>();
+        UI = FindObjectOfType<UI_System>();        
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        isMove = false;
 
-        if (Input.GetKeyDown(KeyCode.W))
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+
+        Vector3 direction = new Vector3(x, 0, y).normalized;
+
+        if (direction.magnitude >= 0.1f)
         {
-            isMove = true;
-            rb.MovePosition(transform.position + transform.forward * moveSpeed * Time.fixedDeltaTime);
+            float rotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
+            float rot = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotation, ref turnVelocity, turnSmoothtime);
+            transform.rotation = (Quaternion.Euler(new Vector3(0, rot, 0)));
+
+            Vector3 MoveDir = Quaternion.Euler(0, rotation, 0) * Vector3.forward;
+            controller.Move(MoveDir.normalized * moveSpeed * Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            isMove = true;
-            rb.MovePosition(transform.position + transform.right * moveSpeed * Time.fixedDeltaTime);
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            isMove = true;
-            rb.MovePosition(transform.position + -transform.right * moveSpeed * Time.fixedDeltaTime);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            isMove = true;
-            rb.MovePosition(transform.position + -transform.forward * moveSpeed * Time.fixedDeltaTime);
-        }
-        if (isMove)
-        {
-            Instantiate(blueslime, transform.position, Quaternion.identity);
-        }
-       
+      
     }
     private void OnTriggerEnter(Collider other)
     {
