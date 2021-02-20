@@ -10,13 +10,13 @@ public class BluePlayer : MonoBehaviour
     [SerializeField]private float turnSmoothtime = 0.1f;
     float turnVelocity;
     public Transform Camera;
-    // Start is called before the first frame update
+    public float TimeForNextLevel;
+    private 
     void Start()
     {
         UI = FindObjectOfType<UI_System>();        
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -37,16 +37,19 @@ public class BluePlayer : MonoBehaviour
         }
       
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (other.gameObject.CompareTag("RedSlime"))
+       
+        if (hit.gameObject.CompareTag("Portal"))
         {
-            UI.lifeCount -= 1;
+            StartCoroutine(nextLevel());
+
         }
-        if (other.gameObject.CompareTag("BlueBean"))
-        {
-            UI.bluebean -= 1;
-            Destroy(other.gameObject);
-        }
+    }
+
+    IEnumerator nextLevel()
+    {
+        yield return new WaitForSeconds(TimeForNextLevel);
+        UI.LevelComplete = true;
     }
 }

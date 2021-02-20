@@ -8,7 +8,7 @@ public class buttons : MonoBehaviour
 
  public void play()
     {
-        SceneManager.LoadScene("StrongerTogether");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
  public void quit()

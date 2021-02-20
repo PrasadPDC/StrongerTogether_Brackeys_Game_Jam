@@ -6,58 +6,36 @@ public class RedPlayer : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     public GameObject redslime;
-    private bool isMove = false;
-    private UI_System UI;
-    private Rigidbody rb;
-    // Start is called before the first frame update
-    void Start()
-    {
-        UI = FindObjectOfType<UI_System>();
-        rb = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
+    public CharacterController controller;
+    [SerializeField] private float turnSmoothtime = 0.1f;
+    float turnVelocity;
+   
     void Update()
     {
-        isMove = false;
 
-        if (Input.GetKey(KeyCode.UpArrow))
+
+        float x = Input.GetAxis("Arrowright");
+        float y = Input.GetAxis("Arrowup");
+
+        Vector3 direction = new Vector3(x, 0, y).normalized;
+
+        if (direction.magnitude >= 0.1)
         {
-            isMove = true;
-            rb.MovePosition(transform.position + transform.forward * moveSpeed * Time.fixedDeltaTime);
+            float rot = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            //float rot = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, rot, ref turnVelocity, turnSmoothtime);
+            transform.rotation = (Quaternion.Euler(new Vector3(0, angle, 0)));
+            //Vector3 MoveDir = Quaternion.Euler(0, rot, 0) * Vector3.forward;
+
+            controller.Move(direction * moveSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            isMove = true;
-            rb.MovePosition(transform.position + transform.right * moveSpeed * Time.fixedDeltaTime);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            isMove = true;
-            rb.MovePosition(transform.position + -transform.right * moveSpeed * Time.fixedDeltaTime);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            isMove = true;
-            rb.MovePosition(transform.position + -transform.forward * moveSpeed * Time.fixedDeltaTime);
-        }
-        if (isMove)
-        {
-            Instantiate(redslime, transform.position, Quaternion.identity);
-        }
+          
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (other.gameObject.CompareTag("BlueSlime"))
+        if (hit.gameObject.CompareTag("Key"))
         {
-            UI.lifeCount -= 1;
-        }
-        if (other.gameObject.CompareTag("RedBean"))
-        {
-            UI.redbean -= 1;
-            Destroy(other.gameObject);
-
+            Destroy(hit.gameObject);
         }
     }
 }

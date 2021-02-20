@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Key
   - BlueSlime
   - RedSlime
-  - RedBean
-  - BlueBean
+  - Portal
   layers:
   - Default
   - TransparentFX

@@ -2,42 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UI_System : MonoBehaviour
 {
-    public TextMeshProUGUI Life;
-    public TextMeshProUGUI Redbean;
-    public TextMeshProUGUI Bluebean;
-    private int LifeC = 3;
-    public int lifeCount
+    public TextMeshProUGUI Keys;
+    [HideInInspector]public bool LevelComplete = false;
+    public GameObject GATE;
+    private int key = 3;
+    public int KeyCount
     {
-        get { return LifeC; }
-        set {LifeC = value; }
+        get { return key; }
+        set { key = value; }
     }
-    private int Red;
-    public int redbean
-    {
-        get { return Red; }
-        set { Red = value; }
-    }
-    private int blue;
-    public int bluebean
-    {
-        get { return blue; }
-        set { blue = value; }
-    }
-    // Start is called before the first frame update
     void Start()
     {
-        Red = GameObject.FindGameObjectsWithTag("RedBean").Length;
-        blue = GameObject.FindGameObjectsWithTag("BlueBean").Length;
+        LevelComplete = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Life.text = "Life:" + LifeC;
-        Redbean.text = "Beans:" + redbean;
-        Bluebean.text = "Beans:" + bluebean;
+      
+
+        if (LevelComplete)
+        {
+            SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        if(key == 0)
+        {
+            GATE.GetComponent<BoxCollider>().enabled = false;
+        }
+
+        Keys.text = "Keys:" + KeyCount;
+    }
+    private void LateUpdate()
+    {
+        KeyCount = GameObject.FindGameObjectsWithTag("Key").Length;
     }
 }
