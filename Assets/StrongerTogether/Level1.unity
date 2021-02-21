@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6319,7 +6319,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315372242}
-  m_LocalRotation: {x: 0.12159368, y: -0.0000008241322, z: 0.00000010095836, w: 0.99258}
+  m_LocalRotation: {x: 0.12159368, y: -0.00000093965036, z: 0.000000115109636, w: 0.99258}
   m_LocalPosition: {x: 8.900017, y: 4.692969, z: -39.1954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -13217,6 +13217,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8f00e32710bac4d4bb2d04dad30bf4ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3243217978151592397, guid: 8f00e32710bac4d4bb2d04dad30bf4ff,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 8f00e32710bac4d4bb2d04dad30bf4ff,
         type: 3}
       propertyPath: m_Name
@@ -15095,7 +15101,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660886547}
-  m_LocalRotation: {x: 0.1248344, y: -0.0000008523068, z: 0.00000010723606, w: 0.9921776}
+  m_LocalRotation: {x: 0.1248344, y: -0.00000092269556, z: 0.00000011609228, w: 0.9921776}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -15397,7 +15403,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737818782}
-  m_LocalRotation: {x: 0.10681432, y: -0.0000008760723, z: 0.00000009411549, w: 0.994279}
+  m_LocalRotation: {x: 0.10681432, y: -0.00000087654996, z: 0.00000009416681, w: 0.994279}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
