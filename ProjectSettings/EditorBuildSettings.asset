@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/StrongerTogether/Level1.unity
     guid: 2a60082320618f946bd6ace892054c83
-  - enabled: 0
-    path: Assets/StrongerTogether/Level2.unity
-    guid: de8941d94cd4ffa4ab0b5f9c052fe9fb
   m_configObjects: {}
