@@ -9,6 +9,7 @@ public class UI_System : MonoBehaviour
     public TextMeshProUGUI Keys;
     [HideInInspector]public bool LevelComplete = false;
     public GameObject GATE;
+    public GameObject Portal;
     private int key = 3;
     public int KeyCount
     {
@@ -18,6 +19,8 @@ public class UI_System : MonoBehaviour
     void Start()
     {
         LevelComplete = false;
+        Portal.GetComponent<BoxCollider>().enabled = false;
+
     }
 
     void Update()
@@ -32,6 +35,7 @@ public class UI_System : MonoBehaviour
         if(key == 0)
         {
             GATE.GetComponent<BoxCollider>().enabled = false;
+            Portal.GetComponent<BoxCollider>().enabled = true;
         }
 
         Keys.text = "Keys:" + KeyCount;
