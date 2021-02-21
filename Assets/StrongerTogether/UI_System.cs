@@ -19,7 +19,7 @@ public class UI_System : MonoBehaviour
     void Start()
     {
         LevelComplete = false;
-        Portal.GetComponent<BoxCollider>().enabled = false;
+        Portal.SetActive(false);
 
     }
 
@@ -35,7 +35,7 @@ public class UI_System : MonoBehaviour
         if(key == 0)
         {
             GATE.GetComponent<BoxCollider>().enabled = false;
-            Portal.GetComponent<BoxCollider>().enabled = true;
+            Portal.SetActive(true);
         }
 
         Keys.text = "Keys:" + KeyCount;
