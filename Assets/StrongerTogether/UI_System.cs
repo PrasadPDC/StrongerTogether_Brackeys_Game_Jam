@@ -11,8 +11,12 @@ public class UI_System : MonoBehaviour
     public GameObject GATE;
     public GameObject Portal;
     private int key = 3;
+    public GameObject fir;
+    public GameObject sec;
+
     public int KeyCount
     {
+
         get { return key; }
         set { key = value; }
     }
@@ -20,6 +24,8 @@ public class UI_System : MonoBehaviour
     {
         LevelComplete = false;
         Portal.SetActive(false);
+        fir.SetActive(true);
+        sec.SetActive(true);
 
     }
 
@@ -43,5 +49,21 @@ public class UI_System : MonoBehaviour
     private void LateUpdate()
     {
         KeyCount = GameObject.FindGameObjectsWithTag("Key").Length;
+    }
+
+    public void next()
+    {
+        fir.SetActive(true);
+        sec.SetActive(false);
+    }
+    public void pre()
+    {
+        fir.SetActive(false);
+        sec.SetActive(true);
+    }
+    public void cut()
+    {
+        fir.SetActive(false);
+        sec.SetActive(false);
     }
 }
