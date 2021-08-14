@@ -15,7 +15,6 @@ public class UI_System : MonoBehaviour
 
     public int KeyCount
     {
-
         get { return key; }
         set { key = value; }
     }
@@ -31,8 +30,7 @@ public class UI_System : MonoBehaviour
     }
 
     void Update()
-    {
-      
+    {    
 
         if (LevelComplete)
         {
